@@ -3,16 +3,23 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const productRouter = require('./routes/product.router')
+
 // globals
 const app = express();
-const port = 5000;
 
 // uses
-app.use(express.static('server/public'));
+//app.use(express.static('server/public'));
 //if your server is receiving undefined date from POSTs your are likely missing the following:
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/product', productRouter);
+
 // spin up server
-app.listen(port, (req, res) => {
+const port = 5000;
+app.listen(port, () => {
     console.log('server up on:', port);
-}) // end spin up server
+}); // end spin up server
+
+//require product routes
+//redirect
